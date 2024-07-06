@@ -19,3 +19,17 @@
 - tree shaking -remove unused code
 - different dev prod bundlers
 
+
+
+
+
+
+Two types of export/Import 
+-Default EXport/Import
+
+export default component
+import component from "path"
+
+-Named EXport/Import
+export cost component;
+import {componet} from "path"

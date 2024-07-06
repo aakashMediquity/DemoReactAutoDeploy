@@ -1,17 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-const elem = <span>leaning code bro</span>;
+// const elem = <span>leaning code bro</span>;
 
-const title = <h1 className="head"> rearning react</h1>;
+// const title = <h1 className="head"> rearning react</h1>;
 
-const FuncComponent = () => {
-    // return (
-      <div id="container"><h1>hjhjh</h1> {title}</div>
-    // );
-}
+// const FuncComponent = () => {
+//   return (
+//     <div id="container">
+//       <h1>hjhjh</h1> {title}
+//     </div>
+//   );
+// };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<FuncComponent />);
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<FuncComponent />);
 // root.render(jsxHeading);
 
 // {
@@ -44,3 +46,5 @@ root.render(<FuncComponent />);
 //     <h1>AAKash searching for job</h1>
 //   </div>
 // );
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);
