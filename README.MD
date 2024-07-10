@@ -33,3 +33,9 @@ import component from "path"
 -Named EXport/Import
 export cost component;
 import {componet} from "path"
+
+hooks
+- normal js utility function
+- useState() - superPowerful state variable in react
+- useEffect()
+
