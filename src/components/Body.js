@@ -1,6 +1,7 @@
 import RestaurentCard from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [listOfRestaurents, setListOfRestaurents] = useState([]);
   const [filteredRestarent, setfilteredRestarent] = useState([]);
@@ -13,21 +14,23 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/api/seo/getListing?lat=26.921885&lng=75.723292"
+      "https://foodfire.onrender.com/api/restaurants?lat=18.9486&lng=72.83662&page_type=DESKTOP_WEB_LISTING"
+     
     );
     const json = await data.json();
     //optional chaining
-    console.log(
-      json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
-      "bnnnnnnnnnnn"
-    );
+    // console.log(
+    //   json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
+    //   "bnnnnnnnnnnn"
+    // );
+
+
+console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+
     setListOfRestaurents(
-      json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setfilteredRestarent(json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      ?.restaurants)
+    setfilteredRestarent(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   };
   //conditional rendering
 
@@ -73,7 +76,7 @@ const Body = () => {
 
       <div className="res-container">
         {filteredRestarent.map((restaurent) => (
-          <RestaurentCard key={restaurent.info.id} resData={restaurent} />
+          <Link key={restaurent.info.id}  to={"/restaurents/" +restaurent.info.id }> <RestaurentCard resData={restaurent} /></Link>
         ))}
       </div>
     </div>
