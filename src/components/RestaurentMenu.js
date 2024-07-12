@@ -5,22 +5,20 @@ import { MENU_API } from "../utils/constant";
 
 const RestaurentMenu = () => {
     const [resInfo ,setResInfo] = useState(null);
-    const params = useParams();
-    console.log(params,"params")
+    const {resId} = useParams();
+    // console.log(params,"params")
   useEffect(() => {
     fetchMenu();
   }, []);
 
   const fetchMenu = async () => {
     const data = await fetch(
-        "https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=18.9486&lng=72.83662&restaurantId= 569607"  
+        MENU_API+ resId
     );
     const json = await data.json();
-    // console.log(json.data ,"DATNNNNNNNNNNA");
+    console.log(json.data,"data");
 
-    // console.log(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.itemCards[11].card.info.name,"llllllllll");
-    // console.log(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.itemCards,"ssssssssssssssssssssssssllllllllll");
-
+    
     setResInfo(json.data)
   };
 
@@ -28,7 +26,7 @@ const RestaurentMenu = () => {
 
   const {name ,cuisines,costForTwoMessage } =resInfo?.cards[2]?.card?.card?.info;
   const {itemCards} =resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
-  console.log(resInfo,"pppppppppppppppppppp")
+  console.log(itemCards,"pppppppppppppppppppp")
        
   return (
     <div className="menu">
