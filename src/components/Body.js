@@ -11,11 +11,11 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  
+  // "https://foodfire.onrender.com/api/restaurants?lat=26.921885&lng=75.723292&page_type=DESKTOP_WEB_LISTING"
   const fetchData = async () => {
     const data = await fetch(
-      "https://foodfire.onrender.com/api/restaurants?lat=18.9486&lng=72.83662&page_type=DESKTOP_WEB_LISTING"
-     
+      "https://food-delivery-cors.vercel.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     //optional chaining
@@ -23,9 +23,10 @@ const Body = () => {
     //   json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
     //   "bnnnnnnnnnnn"
     // );
-
+    // at=28.462656&lng=77.048981
 
 console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+console.log(json.data)
 
     setListOfRestaurents(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
