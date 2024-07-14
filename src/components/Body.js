@@ -2,28 +2,27 @@ import RestaurentCard from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurentListData from "../utils/useRestaurentListData";
+import { RESTAURENT_API_DATA } from "../utils/constant";
+
 const Body = () => {
   const [listOfRestaurents, setListOfRestaurents] = useState([]);
   const [filteredRestarent, setfilteredRestarent] = useState([]);
 
   const [searchText, setSearchText] = useState("");
   console.log("body render");
+
   useEffect(() => {
     fetchData();
   }, []);
   
-  // "https://foodfire.onrender.com/api/restaurants?lat=26.921885&lng=75.723292&page_type=DESKTOP_WEB_LISTING"
   const fetchData = async () => {
     const data = await fetch(
-      "https://food-delivery-cors.vercel.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      RESTAURENT_API_DATA
     );
     const json = await data.json();
-    //optional chaining
-    // console.log(
-    //   json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
-    //   "bnnnnnnnnnnn"
-    // );
-    // at=28.462656&lng=77.048981
+  
 
 console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 console.log(json.data)
@@ -33,7 +32,10 @@ console.log(json.data)
     );
     setfilteredRestarent(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   };
-  //conditional rendering
+
+
+  const onlineStatus = useOnlineStatus();
+  if(onlineStatus === false) return <h1>Look like you are offline check your internet connection</h1>
 
   return listOfRestaurents.length === 0 ? (
     <Shimmer />
