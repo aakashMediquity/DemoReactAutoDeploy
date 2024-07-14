@@ -16,36 +16,37 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  
-  const fetchData = async () => {
-    const data = await fetch(
-      RESTAURENT_API_DATA
-    );
-    const json = await data.json();
-  
 
-console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-console.log(json.data)
+  const fetchData = async () => {
+    const data = await fetch(RESTAURENT_API_DATA);
+    const json = await data.json();
+
+    console.log(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    console.log(json.data);
 
     setListOfRestaurents(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setfilteredRestarent(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setfilteredRestarent(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
-
   const onlineStatus = useOnlineStatus();
-  if(onlineStatus === false) return <h1>Look like you are offline check your internet connection</h1>
+  if (onlineStatus === false)
+    return <h1>Look like you are offline check your internet connection</h1>;
 
   return listOfRestaurents.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search p-4 m-4">
           <input
             type="text"
-            className="search-box"
+            className="border  border-solid border-black "
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -53,33 +54,43 @@ console.log(json.data)
           />
 
           {
-         
-         <button onClick={()=>{
-
-         
-          const filteredList=  listOfRestaurents.filter(res =>
-              
-              res.info.name.toLowerCase().includes(searchText.toLowerCase()) );
-              setfilteredRestarent(filteredList)
-          }} >Search</button> 
+            <button
+              className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+              onClick={() => {
+                const filteredList = listOfRestaurents.filter((res) =>
+                  res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                );
+                setfilteredRestarent(filteredList);
+              }}
+            >
+              Search
+            </button>
           }
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = listOfRestaurents.filter(
-              (res) => res.info.avgRating > 4
-            );
-            setListOfRestaurents(filteredList);
-          }}
-        >
-          Top Rated Restaurent{" "}
-        </button>
+        <div className="search p-4 m-4 flex items-center">
+          <button
+            className="px-4 py-2 bg-gray-100 rounded-lg "
+            onClick={() => {
+              const filteredList = listOfRestaurents.filter(
+                (res) => res.info.avgRating > 4
+              );
+              setListOfRestaurents(filteredList);
+            }}
+          >
+            Top Rated Restaurent{" "}
+          </button>
+        </div>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestarent.map((restaurent) => (
-          <Link key={restaurent.info.id}  to={"/restaurents/" +restaurent.info.id }> <RestaurentCard resData={restaurent} /></Link>
+          <Link
+            key={restaurent.info.id}
+            to={"/restaurents/" + restaurent.info.id}
+          >
+            {" "}
+            <RestaurentCard resData={restaurent} />
+          </Link>
         ))}
       </div>
     </div>
