@@ -3,7 +3,7 @@ import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import useRestaurentListData from "../utils/useRestaurentListData";
+// import useRestaurentListData from "../utils/useRestaurentListData";
 import { RESTAURENT_API_DATA } from "../utils/constant";
 
 const Body = () => {
@@ -12,7 +12,7 @@ const Body = () => {
 
   const [searchText, setSearchText] = useState("");
   const RestaurentCardPromoted  = withPromotedLabel(RestaurentCard)
-  console.log("body render");
+  // console.log("body render");
 
   useEffect(() => {
     fetchData();
@@ -22,10 +22,10 @@ const Body = () => {
     const data = await fetch(RESTAURENT_API_DATA);
     const json = await data.json();
 
-    console.log(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    ,"show data");
-    console.log(json.data);
+    // console.log(
+    //   json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // ,"show data");
+    // console.log(json.data);
 
     setListOfRestaurents(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
