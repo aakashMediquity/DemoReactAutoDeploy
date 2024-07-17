@@ -1,5 +1,7 @@
 import { useEffect, useState ,useContext } from "react";
-import { LOGO_URL } from "../utils/constant";
+
+import  LOGO  from "../assets/file.png";
+// import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
@@ -33,31 +35,31 @@ const cartItems = useSelector((store)=>store.cart.items);
 return (
   <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
 
-    <div className="flex  justify-between bg-pink-100 shadow-lg mb-2 sm:bg-yellow-50 lg:bg-green-50">
+    <div className="flex  justify-between shadow-lg mb-2  w-full h-[100px] bg-[#edf7f9] ">
       <div className="logo-container">
-        <img className="w-56" src={LOGO_URL}></img>
+        <img className="w-32 mb-36" src={LOGO}></img>
       </div>
 
       <div className="flex items-center">
         <ul className="flex p-4 m-4 ">
-          <li className="px-4"> onlineStatus : {onlineStatus?"🟢":"🔴"}</li>
-          <li className="px-4"> <Link to="/">Home</Link></li>
-          <li className="px-4">
+         
+          <li className="px-2  hover:text hover:text-[#fc8019]"> <Link to="/">Home</Link></li>
+          <li className="px-2 hover:text hover:text-[#fc8019]" >
             <Link to="/about"> About Us</Link>
             </li>
-          <li className="px-4"><Link to ="/contact">Contact Us</Link></li>
-          <li className="px-4">
+          <li className="px-2 hover:text hover:text-[#fc8019]"><Link to ="/contact">Contact Us</Link></li>
+          {/* <li className="px-4">
             <Link to ="/grocery">Grocery</Link>
-            </li>
-          <li className="px-4 font-bold text-xl">
+            </li> */}
+          <li className="px-2 font-medium text-xl hover:text hover:text-[#fc8019]">
           <Link to ="/cart">
             Cart({cartItems.length}items)</Link></li>
+            
         <button className="login" onClick={()=>{ btnNameReact ==="Login"
             ? setBtnNameReact('Logout')
-            :setBtnNameReact("Login") }}>{btnNameReact}
-          
+            :setBtnNameReact("Login") }}>{btnNameReact}{onlineStatus?"🟢":"🔴"}  
         </button>
-        <li className="px-4 font-bold">{logggdInUser}</li>
+        {/* <li className="px-2 font-bold">{logggdInUser}</li> */}
 
         </ul>
       </div>

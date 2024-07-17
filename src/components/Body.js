@@ -15,8 +15,7 @@ const Body = () => {
   // console.log("body render");
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()}, []);
 
   const fetchData = async () => {
     const data = await fetch(RESTAURENT_API_DATA);
@@ -90,7 +89,7 @@ const Body = () => {
             to={"/restaurents/" + restaurent.info.id}
           >
             {
-              restaurent.info.avgRating >= 4.1 && restaurent.info.avgRating <= 4.4? 
+              restaurent.info.avgRating >= 4.0 && restaurent.info.avgRating <= 4.2? 
               (<RestaurentCardPromoted resData={restaurent} />
 
               ): ( 
