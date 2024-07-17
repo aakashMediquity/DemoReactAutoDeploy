@@ -45,6 +45,34 @@ hooks
 
 
 *** when to use useeffect()
+
+
+
+
+
+
+#Redux Toolkit
+-Install @reduxjs/Toolkit and reactt-redux
+-build own store.
+-Connect our store to our app.
+- slice (cart)
+-dispatch action.
+- read data using selector
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 1. If no dependency array => useEffect is called on every render -->
 <!-- 2. If dependency array is empty = []  => useEffect is called on initial render(just once) -->
 <!-- 3. If dependency array is [btnNameReact] => called everytime  btnName is updated-->

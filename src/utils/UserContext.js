@@ -1,6 +1,11 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
-const UserContext =createContext({
-    logggdInUser :"Default User"
-})
+const UserContext = createContext({
+  loggedInUser: 'Default User',
+  setUserName: () => {}, // Provide a default empty function for setUserName
+});
+
 export default UserContext;
+
+
+
