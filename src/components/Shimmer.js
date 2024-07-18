@@ -1,102 +1,90 @@
-// const Shimmer =() =>{
-//     return (
-//         <div className="shimmer-container">
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-//         <div className="shimmer-card">card</div>
-        
 
-//    </div>
-//     )
-
-// }
-// export default Shimmer;
-
-
-
-
-// import {
-//     shimmer_card_unit,
-//     shimmer_menu_card_unit,
-//   } from "../../../public/Common/constants";
-  
-  // Shimmer card to display with animation
-  const CardShimmer = () => {
-    return (
-      <div className="shimmer-card">
-        <div className="shimmer-img stroke animate"></div>
-        <div className="shimmer-title stroke animate"></div>
-        <div className="shimmer-tags stroke animate"></div>
-        <div className="shimmer-details">
-          <div className="shimmer-details-rating stroke animate"></div>
-          <div className="shimmer-details-rating stroke animate"></div>
-          <div className="shimmer-details-rating stroke animate"></div>
-        </div>
-      </div>
-    );
-  };
-  
-  export const MenuShimmer = () => {
-    return (
-      <div className="restaurant-menu shimmer-width">
-        <div className="restaurant-summary stroke-color animate">
-          <img className="shimmer-img stroke animate" />
-          <div className="restaurant-summary-details">
-            <h2 className="shimmer-menu-title  stroke animate"></h2>
-            <p className="shimmer-items stroke animate"></p>
-            <div className="shimmer-details">
-              <div className="shimmer-details-rating stroke animate"></div>
-              <div className="shimmer-details-rating stroke animate"></div>
-              <div className="shimmer-details-rating stroke animate"></div>
-            </div>
-          </div>
-        </div>
-  
-        <div className="restaurant-menu-content">
-          <div className="menu-items-container">
-            <div className="menu-title-wrap ">
-              <h3 className="shimmer-menu-content stroke animate"></h3>
-              <p className="shimmer-menu-count stroke animate"></p>
-            </div>
-            <div className="menu-items-list">
-              {Array(shimmer_menu_card_unit)
-                .fill("")
-                .map((element, index) => (
-                  <div className="shimmer-menu-card" key={index.toString() + 1}>
-                    <div className="shimmer-item-details">
-                      <h3 className="shimmer-w50  stroke animate"></h3>
-                      <p className="shimmer-w20  stroke animate"> </p>
-                      <p className="shimmer-w70  stroke animate"></p>
-                    </div>
-                    <div className="shimmer-img-wrapper">
-                      <img className="shimmer-img stroke animate" />
-                      <div className="shimmer-btn stroke animate"> </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-  
   const Shimmer = () => {
     return (
-      <div className="shimmer-container">
-        {/* create a new Array instance using Array() constructor and map through every element of array */}
-        {Array(10)
-          .fill("")
-          .map((element, index) => {
-            return <CardShimmer key={index.toString() + 1} />;
-          })}
+      <div>
+      
+      <div className="m-4   p-4 w-[250px] rounded-lg bg-gray-100 animate-pulse">
+       
+        <div className="w-full h-32 bg-gray-300 rounded-lg"></div>
+        <div className="flex justify-between  items-center mt-4 mb-2">
+          <div className="h-6 bg-gray-300 rounded w-3/5"></div>
+          <div className="h-6 bg-gray-300 rounded w-1/5"></div>
+        </div>
+        <div className="h-4 bg-gray-300 rounded mt-2"></div>
+        <div className="flex justify-between mt-4">
+          <div className="h-4 bg-gray-300 rounded w-1/3"></div>
+          <div className="h-4 bg-gray-300 rounded w-1/3"></div>
+        </div>
+        </div>
+
+        </div>
+     
+    );
+  };
+  
+  
+  export default Shimmer;
+
+
+
+ export const ShimmerRestaurant = () => {
+    return (
+      <div className=' "text-center animate-pulse mx-56   '>
+        <div className='flex justify-between items-center border-dashed border-b  pb-8 '>
+          <div className='basis-6/12 space-y-2 '>
+            <div className='bg-gray-200 h-6 rounded-md'></div>
+            <div className='bg-gray-200 w-[50%] h-6 rounded-md'></div>
+          </div>
+  
+          <div className='basis-2/12 bg-gray-200 h-14 rounded-md'></div>
+        </div>
+  
+        {/* Restaurant Details */}
+        <div className='w-full my-4 bg-gray-200 h-16'></div>
+        <div className='space-y-4'>
+          <div className='flex w-full justify-between gap-4'>
+            <div className='space-y-2 grow py-4'>
+              <div className='h-4 bg-gray-100 w-[80%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[50%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[20%] rounded-md'></div>
+            </div>
+            <div className='h-24 w-full basis-2/12 aspect-square md:aspect-video bg-gray-200 rounded-md'></div>
+          </div>
+          <div className='flex w-full justify-between gap-4'>
+            <div className='space-y-2 grow py-4'>
+              <div className='h-4 bg-gray-100 w-[80%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[50%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[20%] rounded-md'></div>
+            </div>
+            <div className='h-24 w-full basis-2/12 aspect-square md:aspect-video bg-gray-200 rounded-md'></div>
+          </div>
+          <div className='flex w-full justify-between gap-4'>
+            <div className='space-y-2 grow py-4'>
+              <div className='h-4 bg-gray-100 w-[80%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[50%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[20%] rounded-md'></div>
+            </div>
+            <div className='h-24 w-full basis-2/12 aspect-square md:aspect-video bg-gray-200 rounded-md'></div>
+          </div>
+          <div className='flex w-full justify-between gap-4'>
+            <div className='space-y-2 grow py-4'>
+              <div className='h-4 bg-gray-100 w-[80%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[50%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[20%] rounded-md'></div>
+            </div>
+            <div className='h-24 w-full basis-2/12 aspect-square md:aspect-video bg-gray-200 rounded-md'></div>
+          </div>
+          <div className='flex w-full justify-between gap-4'>
+            <div className='space-y-2 grow py-4'>
+              <div className='h-4 bg-gray-100 w-[80%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[50%] rounded-md'></div>
+              <div className='h-2 bg-gray-100 w-[20%] rounded-md'></div>
+            </div>
+            <div className='h-24 w-full basis-2/12 aspect-square md:aspect-video bg-gray-200 rounded-md'></div>
+          </div>
+        </div>
       </div>
     );
   };
-  export default Shimmer;
+  
+  // export default ShimmerRestaurant;

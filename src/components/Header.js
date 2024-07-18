@@ -1,5 +1,6 @@
 import { useEffect, useState ,useContext } from "react";
 
+
 import  LOGO  from "../assets/file.png";
 // import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
@@ -45,15 +46,15 @@ return (
          
           <li className="px-2  hover:text hover:text-[#fc8019]"> <Link to="/">Home</Link></li>
           <li className="px-2 hover:text hover:text-[#fc8019]" >
-            <Link to="/about"> About Us</Link>
+            <Link to="/about"><i class="fa-regular fa-address-card"></i> About Us</Link>
             </li>
-          <li className="px-2 hover:text hover:text-[#fc8019]"><Link to ="/contact">Contact Us</Link></li>
+          <li className="px-2 hover:text hover:text-[#fc8019]"><Link to ="/contact"><i class="fa-solid fa-phone"></i>Contact Us</Link></li>
           {/* <li className="px-4">
             <Link to ="/grocery">Grocery</Link>
             </li> */}
           <li className="px-2 font-medium text-xl hover:text hover:text-[#fc8019]">
           <Link to ="/cart">
-            Cart({cartItems.length}items)</Link></li>
+          <i class="fa-solid fa-cart-shopping"></i>{cartItems.length}</Link></li>
             
         <button className="login" onClick={()=>{ btnNameReact ==="Login"
             ? setBtnNameReact('Logout')

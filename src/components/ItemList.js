@@ -1,11 +1,16 @@
 import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constant";
 import { addItem } from "../utils/cartSlice";
+import toast from 'react-hot-toast';
 const ItemList =({items}) =>{
    
    const dispatch = useDispatch();
+   const showToast = () => {
+      toast.success('Toast message'); // Example success toast
+    };
  
    const handleAddItem = (item) => {
+      toast.success('Added to cart!');
      dispatch(addItem(item));
    };
 
@@ -26,11 +31,13 @@ const ItemList =({items}) =>{
                 <p className="text-xs">{item.card.info.description}</p>
                 </div>
                 <div  className="w-3/12 p-4"> 
-              
-               <div className="absolute">
-               <button className="p-2 bg-black text-white rounded-lg shadow-lg mx-6 my-12" onClick={()=>handleAddItem(item)} > Add +</button>``
+                <img src={CDN_URL+item.card.info.imageId}></img>
+               <div className="relative">
+               <button className="bg-white w-24 text-orange-500 hover:bg-orange-500 hover:text-white font-bold px-2  rounded-md absolute shadow-md left-[50%] -bottom-4 -translate-x-[50%]" onClick={()=>handleAddItem(item)} > 
+                  
+                  Add +</button>
                </div>
-               <img src={CDN_URL+item.card.info.imageId}></img>
+               {/* <img src={CDN_URL+item.card.info.imageId}></img> */}
                </div>
             </div>
         ))
