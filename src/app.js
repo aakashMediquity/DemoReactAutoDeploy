@@ -26,13 +26,13 @@ const AppLayout = () => {
 
   return (
     <Provider store={appStore} >
- <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+ {/* <UserContext.Provider value={{ loggedInUser: userName, setUserName }}> */}
       <div className="app">
         <Header />
         <Outlet />
         <Footer/>
       </div>
-    </UserContext.Provider>
+    {/* </UserContext.Provider> */}
     </Provider>
   );
 };
@@ -78,7 +78,7 @@ const appRouter = createBrowserRouter([
         element: <Cart />,
       }
     ],
-    errorElement: <Error />,
+    // errorElement: <Error />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
