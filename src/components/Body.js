@@ -3,18 +3,15 @@ import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-// import useRestaurentListData from "../utils/useRestaurentListData";
 import { RESTAURENT_API_DATA } from "../utils/constant";
 import Footer from "./Footer";
 
 const Body = () => {
   const [listOfRestaurents, setListOfRestaurents] = useState([]);
   const [filteredRestarent, setfilteredRestarent] = useState([]);
-
   const [loading, setLoading] = useState(true);
-  const [restaurants, setRestaurants] = useState([]);
-
   const [searchText, setSearchText] = useState("");
+
   const RestaurentCardPromoted = withPromotedLabel(RestaurentCard);
 
   useEffect(() => {
@@ -22,127 +19,82 @@ const Body = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    if (listOfRestaurents.length) {
       setLoading(false);
-    }, 2000);
-  }, []);
+    }
+  }, [listOfRestaurents]);
 
   const fetchData = async () => {
-    const data = await fetch(RESTAURENT_API_DATA);
-    const json = await data.json();
-
-    // console.log(
-    //   json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    // ,"show data");
-    // console.log(json.data);
-
-    setListOfRestaurents(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setfilteredRestarent(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    try {
+      const response = await fetch(RESTAURENT_API_DATA);
+      const json = await response.json();
+      console.log('Fetched Data:', json); // Debug line
+      const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+      setListOfRestaurents(restaurants);
+      setfilteredRestarent(restaurants);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
+  
 
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)
-    return <h1>Look like you are offline check your internet connection</h1>;
+    return <h1>Looks like you are offline. Please check your internet connection.</h1>;
 
-  return listOfRestaurents.length === 0 ? (
-    <div className="flex flex-wrap">
-      {loading
-        ? Array(20)
-            .fill("")
-            .map((_, index) => <Shimmer key={index} />)
-        : restaurants.map((resData) => (
-            <RestaurentCard key={resData.info.id} resData={resData} />
-          ))}
-    </div>
-  ) : (
-    <div className="body">
-      <div className="filter flex items-center justify-center">
-        {/* <div className="search p-4 m-4 ">
-          <input
-            type="text"
-            className="border  w-96 mx- h-8 border-solid border-black "
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-          />
+  const handleSearch = () => {
+    const filteredList = listOfRestaurents.filter((res) =>
+      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setfilteredRestarent(filteredList);
+  };
 
-          {
-            <button
-              className=" py-2 w-24 h-10 bg-green-200 rounded-lg hover:bg-green-800 hover:text-white"
-              onClick={() => {
-                const filteredList = listOfRestaurents.filter((res) =>
-                  res.info.name.toLowerCase().includes(searchText.toLowerCase())
-                );
-                setfilteredRestarent(filteredList);
-              }}
-            >
-              Search
-            </button>
-          }
-          
-        </div> */}
-        <div className="search flex items-center justify-center p-4 m-4 bg-gray-50 rounded-lg shadow-md">
-          <input
-            type="text"
-            className="border border-gray-300 w-96 h-10 px-4 rounded-lg focus:outline-none focus:border-green-400"
-            placeholder="Search for restaurants..."
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-          />
-          <button
-            className="ml-4 py-2 px-6 bg-green-600 text-white rounded-lg hover:bg-green-800 transition duration-300 ease-in-out"
-            onClick={() => {
-              const filteredList = listOfRestaurents.filter((res) =>
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
-              );
-              setfilteredRestarent(filteredList);
-            }}
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Search
-          </button>
-        </div>
+ return (
+  <div className="body">
+    <div className="filter flex items-center justify-center p-4">
+      <div className="search flex items-center justify-center p-4 m-4 bg-gray-50 rounded-lg shadow-md">
+        <input
+          type="text"
+          className="border border-gray-300 w-full sm:w-96 h-10 px-4 rounded-lg focus:outline-none focus:border-green-400"
+          placeholder="Search for restaurants..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button
+          className="ml-4 py-2 px-6 bg-green-600 text-white rounded-lg hover:bg-green-800 transition duration-300 ease-in-out"
+          onClick={handleSearch}
+        >
+          <i className="fa-solid fa-magnifying-glass"></i> Search
+        </button>
       </div>
-      {/* <div className="search p-4 m-4 flex items-center">
-          <button
-            className="px-4 py-2 bg-gray-100 rounded-lg "
-            onClick={() => {
-              const filteredList = listOfRestaurents.filter(
-                (res) => res.info.avgRating > 4
-              );
-              setListOfRestaurents(filteredList);
-            }}
-          >
-            Top Rated Restaurent{" "}
-          </button>
-        </div> */}
+    </div>
 
-      <div className="flex flex-wrap">
-        {filteredRestarent.map((restaurent) => (
+    <div className="flex flex-wrap justify-center">
+      {loading ? (
+        Array(20).fill("").map((_, index) => <Shimmer key={index} />)
+      ) : filteredRestarent.length === 0 ? (
+        <h1>No restaurants found.</h1>
+      ) : (
+        filteredRestarent.map((restaurent) => (
           <Link
             key={restaurent.info.id}
-            to={"/restaurents/" + restaurent.info.id}
+            to={`/restaurents/${restaurent.info.id}`}
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
           >
-            {restaurent.info.avgRating >= 4.0 &&
-            restaurent.info.avgRating <= 4.2 ? (
+            {restaurent.info.avgRating >= 4.0 && restaurent.info.avgRating <= 4.2 ? (
               <RestaurentCardPromoted resData={restaurent} />
             ) : (
               <RestaurentCard resData={restaurent} />
             )}
           </Link>
-        ))}
-      </div>
-   
+        ))
+      )}
     </div>
-    
-  );
- 
+
+    <Footer />
+  </div>
+);
+
 };
+
 export default Body;
