@@ -91,7 +91,7 @@ const Body = () => {
       )}
     </div>
 
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 
