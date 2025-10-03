@@ -19,6 +19,8 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           ls -la
+          echo "node version: $(node -v)"
+          echo "npm version: $(npm -v)"
 
       # Step 3: Setup Node.js
       - name: Setup Node.js
@@ -33,11 +35,12 @@ jobs:
           echo "Installed dependencies:"
           ls -la node_modules
 
-      # Step 5: Build React App with verbose logging
+      # Step 5: Build React App with full logging
       - name: Build React App
         run: |
-          echo "Building React app..."
-          npm run build --verbose || (echo "Build failed!"; exit 1)
+          echo "Starting React build..."
+          set -o pipefail
+          npm run build 2>&1 | tee build.log
 
       # Step 6: List directory after build
       - name: List Directory After Build
@@ -45,11 +48,12 @@ jobs:
           echo "Current directory after build: $(pwd)"
           ls -la
 
-      # Step 7: Verify Build Folder
+      # Step 7: Verify build folder
       - name: Verify Build Folder
         run: |
           if [ ! -d "build" ]; then
             echo "Error: build folder not found!"
+            cat build.log || true
             exit 1
           fi
           ls -la build
@@ -59,12 +63,4 @@ jobs:
         run: |
           mkdir -p /home/aakash/react-app
           rm -rf /home/aakash/react-app/* || true
-          cp -r build/* /home/aakash/react-app/
-
-      # Step 9: Restart Serve with PM2
-      - name: Restart Serve with PM2
-        run: |
-          npm install -g serve pm2
-          pm2 delete react-app || true
-          pm2 start "serve -s /home/aakash/react-app -l 3000" --name react-app
-          pm2 save
+          cp -r build/* /home/aakash/react-*
