@@ -65,10 +65,14 @@ jobs:
           rm -rf /home/aakash/react-app/* || true
           cp -r dist/* /home/aakash/react-app/
 
-      # Step 9: Restart Serve with PM2
+      # Step 9: Restart Serve with PM2 (conditional)
       - name: Restart Serve with PM2
         run: |
           npm install -g serve pm2
-          pm2 delete react-app || true
+          # Delete process only if it exists
+          if pm2 list | grep -q react-app; then
+            pm2 delete react-app
+          fi
+          # Start or restart the app
           pm2 start "serve -s /home/aakash/react-app -l 3000" --name react-app
           pm2 save
