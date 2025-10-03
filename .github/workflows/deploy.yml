@@ -3,33 +3,54 @@ name: Build & Deploy React App
 on:
   push:
     branches:
-      - main   # Trigger only when changes are pushed/merged into main
+      - main   # Trigger on pushes to main branch
 
 jobs:
   build-and-deploy:
     runs-on: [self-hosted, linux]   # Use your local self-hosted runner
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # Step 2: Debug repo structure
+      - name: Debug Repository
+        run: |
+          pwd
+          ls -la
+
+      # Step 3: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
+      # Step 4: Install dependencies
       - name: Install Dependencies
         run: npm ci
 
+      # Step 5: Build the React app
       - name: Build React App
         run: npm run build
 
+      # Step 6: Ensure build exists
+      - name: Verify Build
+        run: |
+          if [ ! -d "build" ]; then
+            echo "Error: build folder not found!"
+            exit 1
+          fi
+          ls -la build
+
+      # Step 7: Deploy Build to target folder
       - name: Deploy Build
         run: |
           mkdir -p /home/aakash/react-app
           rm -rf /home/aakash/react-app/* || true
           cp -r build/* /home/aakash/react-app/
 
+      # Step 8: Restart app with PM2
       - name: Restart Serve with PM2
         run: |
           npm install -g serve pm2
