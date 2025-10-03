@@ -1,0 +1,38 @@
+name: Build & Deploy React App
+
+on:
+  push:
+    branches:
+      - main   # runs only when PRs are merged to main
+
+jobs:
+  build-and-deploy:
+    runs-on: [self-hosted, linux]   # your local runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build React App
+        run: npm run build
+
+      - name: Deploy build
+        run: |
+          rm -rf /home/aakash/react-app/* || true
+          cp -r build/* /home/aakash/react-app/
+      
+      - name: Restart serve
+        run: |
+          npm install -g serve pm2
+          pm2 delete react-app || true
+          pm2 start "serve -s /home/aakash/react-app -l 3000" --name react-app
+          pm2 save
+
