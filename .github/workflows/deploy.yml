@@ -3,14 +3,14 @@ name: Build & Deploy React App
 on:
   push:
     branches:
-      - main   # runs only when PRs are merged to main
+      - main   # Trigger only when changes are pushed/merged into main
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, linux]   # your local runner
+    runs-on: [self-hosted, linux]   # Use your local self-hosted runner
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -18,21 +18,19 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
       - name: Build React App
-        run: |
-          npm run build
-          ls -lah build   # 👈 sanity check to confirm build exists
+        run: npm run build
 
-      - name: Deploy build
+      - name: Deploy Build
         run: |
-          sudo mkdir -p /home/aakash/react-app
-          sudo rm -rf /home/aakash/react-app/* || true
-          sudo cp -r build/* /home/aakash/react-app/
+          mkdir -p /home/aakash/react-app
+          rm -rf /home/aakash/react-app/* || true
+          cp -r build/* /home/aakash/react-app/
 
-      - name: Restart serve
+      - name: Restart Serve with PM2
         run: |
           npm install -g serve pm2
           pm2 delete react-app || true
