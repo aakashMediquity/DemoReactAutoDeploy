@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, linux]   # Use your local self-hosted runner
+    runs-on: [self-hosted, linux]   # Use your self-hosted runner
 
     steps:
       # Step 1: Checkout the code
@@ -19,7 +19,6 @@ jobs:
         run: |
           pwd
           ls -la
-          ls -la React
 
       # Step 3: Setup Node.js
       - name: Setup Node.js
@@ -29,20 +28,15 @@ jobs:
 
       # Step 4: Install dependencies
       - name: Install Dependencies
-        run: |
-          cd React
-          npm ci
+        run: npm ci
 
       # Step 5: Build the React app
       - name: Build React App
-        run: |
-          cd React
-          npm run build
+        run: npm run build
 
       # Step 6: Verify build
       - name: Verify Build
         run: |
-          cd React
           if [ ! -d "build" ]; then
             echo "Error: build folder not found!"
             exit 1
@@ -54,7 +48,7 @@ jobs:
         run: |
           mkdir -p /home/aakash/react-app
           rm -rf /home/aakash/react-app/* || true
-          cp -r React/build/* /home/aakash/react-app/
+          cp -r build/* /home/aakash/react-app/
 
       # Step 8: Restart app with PM2
       - name: Restart Serve with PM2
