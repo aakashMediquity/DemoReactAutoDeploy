@@ -1,5 +1,4 @@
-DSD
-#REACT
+#REACT 
 my name is aakah
 #pacel
 - dev build 
