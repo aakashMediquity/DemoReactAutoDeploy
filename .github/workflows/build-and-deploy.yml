@@ -1,10 +1,13 @@
-name: Build React App on PR
+name: Build React App on PR or Merge
 
 on:
+  push:
+    branches:
+      - main    # triggers after PR is merged into main
   pull_request:
     branches:
       - main
-    types: [opened, synchronize, reopened]  # runs on new or updated PRs
+    types: [opened, synchronize, reopened]  # runs on PR events
 
 jobs:
   build:
