@@ -1,6 +1,7 @@
 #REACT 
 my name is aakah
 my name is acel
+Raw
 - dev build 
 -local server
 -HMR - hot module replacement
