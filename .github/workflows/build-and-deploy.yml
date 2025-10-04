@@ -1,13 +1,14 @@
-name: Build and Deploy React App
+name: Build React App on PR
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types: [opened, synchronize, reopened]  # runs on new or updated PRs
 
 jobs:
-  build-and-deploy:
-    runs-on: self-hosted
+  build:
+    runs-on: self-hosted   # or 'ubuntu-latest' if you want GitHub-hosted runner
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,6 +23,3 @@ jobs:
 
       - name: Build React app
         run: npm run build
-
-      - name: Deploy (example)
-        run: echo "Add your deploy commands here"
