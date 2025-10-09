@@ -1,0 +1,17 @@
+############################################## start om ################################
+git log --oneline --graph
+
+# Create hotfix branch from last good commit
+git checkout -b hotfix-rollback <last-good-commit-hash>
+
+# Force main to point to this commit
+git checkout main
+git reset --hard hotfix-rollback
+git push -f origin main
+
+# Update all environment branches
+git push -f origin main:e1-developer
+git push -f origin main:e2-testing
+git push -f origin main:e3-client-testing
+
+######################################## end om ###########################
