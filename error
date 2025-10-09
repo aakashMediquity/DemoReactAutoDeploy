@@ -1,0 +1,17 @@
+############################################ mv   ########################33
+
+# Feature 2: report
+git checkout developer
+git checkout -b feature/report
+echo "Report feature implementation" >> app.txt
+git add app.txt
+git commit -m "Added report feature"
+
+# Feature 3: dashboard
+git checkout developer
+git checkout -b feature/dashboard
+echo "Dashboard feature implementation" >> app.txt
+git add app.txt
+git commit -m "Added dashboard feature"
+🪜 Step 2: Merge featu
+############################## mv  ##########################
