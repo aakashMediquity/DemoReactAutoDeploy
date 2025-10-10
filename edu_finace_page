@@ -1,0 +1,47 @@
+####################################start by abhishek ################################################333
+
+
+✅ Yes, that’s absolutely correct!
+
+You have successfully created the two folders with the right structure and permissions.
+
+Here’s what your setup means:
+
+/var/www/bbiq/
+├── counselorSignature/   ✅ exists
+└── usersSignature/       ✅ exists
+
+
+Both folders belong to user redcrossdewas.
+
+Permissions drwxr-xr-x (755) → good for most web apps.
+
+Path matches exactly what your app expects:
+
+USER_SIGNATURE_FOLDER_PATH=/var/www/bbiq/usersSignature
+COUNSELOR_SIGNATURE_FOLDER_PATH=/var/www/bbiq/counselorSignature
+
+
+💡 Next step (optional but recommended):
+If you haven’t already, set these environment variables permanently so your backend always knows these paths — even after a restart.
+
+You can do that by adding to your shell config:
+
+echo 'export USER_SIGNATURE_FOLDER_PATH=/var/www/bbiq/usersSignature' >> ~/.bashrc
+echo 'export COUNSELOR_SIGNATURE_FOLDER_PATH=/var/www/bbiq/counselorSignature' >> ~/.bashrc
+source ~/.bashrc
+
+
+Then verify:
+
+echo $USER_SIGNATURE_FOLDER_PATH
+echo $COUNSELOR_SIGNATURE_FOLDER_PATH
+
+
+Would you like me to show how to set them system-wide (for services like Spring Boot running via systemd)?
+
+
+
+
+
+###########################  end by abhishek ################################################################################
