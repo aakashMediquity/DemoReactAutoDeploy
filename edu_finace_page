@@ -1,0 +1,36 @@
+
+########################################## done by om  ############################################33333
+🧩 OPTION 2: No Separate Release Branch (PO reviews developer) 👨‍💻 (Good for small or fast teams)
+🔹 How it works
+
+Developers → commit to developer
+
+QA → tests directly on developer
+
+PO reviews developer
+
+Only approved commits → cherry-picked to main
+
+✅ Advantages
+Point	Explanation
+Simpler	Fewer branches, less management.
+Fast turnaround	Quick testing and deployment.
+Good for small teams	When QA and PO work closely together.
+❌ Disadvantages
+Point	Explanation
+Higher risk	One wrong commit in developer can affect PO’s testing.
+Less isolation	If new dev commits come during PO review, confusion can occur.
+Not ideal for large teams	Gets messy when many features are in parallel.
+💡 Final Recommendation
+Team Type	Best Option	Why
+Small team (1–5 devs)	❗ No release branch	Simple, faster feedback.
+Medium/Large team (5+ devs, QA, PO)	✅ Use release branch	Safer, cleaner, industry-standard.
+🔁 My Advice to You (Aakash)
+
+Since you’re practicing full DevOps workflow and planning to move into real company setups →
+👉 Use a release branch for PO review.
+It’s only one extra step, but it makes your project look professional and production-ready.
+
+Would you like me to draw a final diagram comparing both workflows si
+
+##############################3 end by om ###############################################################################
