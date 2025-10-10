@@ -1,0 +1,40 @@
+############################################## start om ################################
+############################################ mv   ########################33
+############################################################  om  ############3333
+
+
+2. Rollback Strategy (Your Issue #2)
+bash
+# When errors occur after merge to main:
+
+# Identify the last good commit
+git log --oneline --graph
+
+# Feature 2: report
+git checkout developer
+git checkout -b feature/report
+echo "Report feature implementation" >> app.txt
+git add app.txt
+git commit -m "Added report feature"
+
+# Feature 3: dashboard
+git checkout developer
+git checkout -b feature/dashboard
+echo "Dashboard feature implementation" >> app.txt
+git add app.txt
+git commit -m "Added dashboard feature"
+🪜 Step 2: Merge featu
+############################## mv  ##########################
+# Create hotfix branch from last good commit
+git checkout -b hotfix-rollback <last-good-commit-hash>
+
+# Force main to point to this commit
+git checkout main
+git reset --hard hotfix-rollback
+git push -f origin main
+
+# Update all environment branches
+git push -f origin main:e1-developer
+git push -f origin main:e2-testing
+git push -f origin main:e3-client-testing
+
