@@ -1,4 +1,6 @@
-###############################  start by neeti ##############################33
+########################### start by neeti############################3
+
+
 
 
 opal_redcross  2510  2300  0 11:21 ?  00:00:00 grep --color=auto bbiq_react
@@ -31,4 +33,4 @@ That will show all files that process has open in your bbiq_react folder.
 If you find a running React dev server and want to stop it:
 
 
-####################3 end by neeti #########################################################################
+######################  end by neeti  ##############################################################

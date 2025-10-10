@@ -1,3 +1,69 @@
+################################## start by neeti 3###########################################33
+
+
+
+
+
+
+bhopal_redcross  2314  2300  1 11:20 ?  00:00:03 node /home/bhopal_redcross/IdeaProjects/bbiq_react/node_modules/react-scripts/scripts/start.js
+bhopal_redcross  2510  2300  0 11:21 ?  00:00:00 grep --color=auto bbiq_react
+The first line = your actual React app process
+
+The second line (grep) = just the search itself (ignore it)
+
+🧩 Step 2 — To see only Node.js processes
+If you’re running React (which uses Node), check this:
+
+bash
+Copy code
+ps aux | grep node
+You’ll get details like:
+
+yaml
+Copy code
+bhopal_redcross  2314  2.3  8.1 1287368 165232 ? Sl 11:20 0:03 node start.js
+🧩 Step 3 — To see the exact folder each process is using
+Run:
+
+bash
+Copy code
+lsof -p <PID> | grep bbiq_react
+Replace <PID> with the process ID from step 1 (for example 2314).
+
+That will show all files that process has open in your bbiq_react folder.
+
+🧩 Step 4 — (Optional) Kill the running React process
+If you find a running React dev server and want to stop it:
+
+bash
+Copy code
+kill -9 <PID>
+Example:
+
+bash
+Copy code
+kill -9 2314
+🧩 Step 5 — If you’re not sure which port it’s using
+React usually runs on port 3000 or another one.
+To see all ports in use by your user:
+
+bash
+Copy code
+sudo lsof -i -P -n | grep LISTEN
+To filter only Node.js:
+
+bash
+Copy code
+sudo lsof -i -P -n | grep node
+
+
+
+
+
+
+
+
+  #########################  end by netti ############################################################################
 
 ########################################## done by om  ############################################33333
 🧩 OPTION 2: No Separate Release Branch (PO reviews developer) 👨‍💻 (Good for small or fast teams)
