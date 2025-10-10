@@ -1,0 +1,74 @@
+################  done by kuldeeep ####################################################3
+
+That means 👇
+
+Your feature branch (feature/home_calldock_AS_Oct10) contains new commits that are not yet in develop.
+
+The code is ready to be merged into develop.
+
+No conflicts exist — so you can safely merge it.
+
+🔹 To merge this feature branch into develop
+
+You have two options:
+
+Option 1 — On GitHub UI
+
+Click the green “View pull request” button.
+
+Review the changes.
+
+Click “Merge pull request” → “Confirm merge”.
+
+Done — your feature branch code will be added to develop.
+
+Option 2 — From local Git
+# Make sure you have both branches
+git fetch origin
+
+# Switch to develop branch
+git checkout develop
+
+# Merge your feature branch into develop
+git merge feature/home_calldock_AS_Oct10
+
+# Push updated develop branch to GitHub
+git push origin develop
+
+🔹 After merge
+
+Your feature code will now be part of the develop branch.
+You can then delete the feature branch if no longer needed:
+
+git branch -d feature/home_calldock_AS_Oct10
+git push origin --delete feature/home_calldock_AS_Oct10
+
+
+##########################3  done by kuldeep ################################################################
+################################################################################ Arpit shrivastav ####################
+To give you examples, these cars tend to be “good + afford
+
+Maruti Suzuki Alto K10 — cheap, low running cost, good fuel efficiency.
+Motor Revv
++3
+Park+
++3
+carphd.com
++3
+
+Maruti Suzuki WagonR — good interior space, reliable, low maintenance.
+MyLifeXP
++2
+carphd.com
++2
+
+Tata Tiago — a safer build, modern design, good value for money.
+PayBima
++2
+Bajaj General Insurance Limited
++2
+
+Renault Kwid — low cost, enough features for city usag
+
+
+#################################################### end of arpit #####################################################
