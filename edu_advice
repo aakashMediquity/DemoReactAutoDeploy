@@ -1,0 +1,36 @@
+########################### start by neeti############################3
+
+
+
+
+opal_redcross  2510  2300  0 11:21 ?  00:00:00 grep --color=auto bbiq_react
+The first line = your actual React app process
+
+The second line (grep) = just the search itself (ignore it)
+
+🧩 Step 2 — To see only Node.js processes
+If you’re running React (which uses Node), check this:
+
+bash
+Copy code
+ps aux | grep node
+You’ll get details like:
+
+yaml
+Copy code
+bhopal_redcross  2314  2.3  8.1 1287368 165232 ? Sl 11:20 0:03 node start.js
+🧩 Step 3 — To see the exact folder each process is using
+Run:
+
+bash
+Copy code
+lsof -p <PID> | grep bbiq_react
+Replace <PID> with the process ID from step 1 (for example 2314).
+
+That will show all files that process has open in your bbiq_react folder.
+
+🧩 Step 4 — (Optional) Kill the running React process
+If you find a running React dev server and want to stop it:
+
+
+######################  end by neeti  ##############################################################
